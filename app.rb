@@ -31,8 +31,9 @@ get '/view' do
         back = Magick::Image.read('back.jpg').first
        back.format = "PNG"
         result = back.composite(front, 2100, 1200, Magick::OverCompositeOp)
-        result.write("public/images/new_#{fileName}.png")
-        
+        @resultpng = "new_#{fileName}.png"
+        result.write("public/images/#{@resultpng}")
     end
   end
+  erb :view
 end
